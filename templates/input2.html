@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表格单元格编辑</title>
+<!-- 此文件为了显示Demo样式，项目中不需要引入 -->
+<link href="../../assets/code/demo.css" rel="stylesheet">
+
+  <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
+  <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="demo-content">
+    <div class="row">
+      <div class="span16">
+        <div id="grid">
+
+        </div>
+      </div>
+    </div>
+    <p class="row">
+      <form class="span8 offset3" id="J_Form" action="" method="post">
+        controlIP: <input type="text" name="controlIP" maxlength="20"><br>
+        <button type="sumbmit" class="button button-primary">提交</button>
+      </form>
+    </p>
+
+
+  <script src="http://g.tbcdn.cn/fi/bui/jquery-1.8.1.min.js"></script>
+  <script src="http://g.alicdn.com/bui/seajs/2.3.0/sea.js"></script>
+  <script src="http://g.alicdn.com/bui/bui/1.1.21/config.js"></script>
+<!--
+        {title : 'server',dataIndex :'c', editor : {xtype : 'date'},renderer : Grid.Format.dateRenderer},     -->
+<!-- script start -->
+    <script type="text/javascript">
+        BUI.use(['bui/grid','bui/data'],function(Grid,Data){
+            var
+          Store = Data.Store,
+          enumObj = {"1" : "是","2" : "否","3" : ""},
+          columns = [
+            {title : 'IP',dataIndex :'a',editor : {xtype : 'text',validator : validFn}}, //editor中的定义等用于 BUI.Form.Field.Text的定义
+            {title : 'HOSTNAME', dataIndex :'b',editor : {xtype : 'text',validator : validFn}},
+            {title : 'server',dataIndex : 'c',editor : {id:'mySelect',xtype :'select',items : enumObj,rules : {required : true},validator : valid},renderer : Grid.Format.enumRenderer(enumObj)},
+            {title : 'agent',dataIndex : 'd',editor : {id:'mySelect2',xtype :'select',items : enumObj,rules : {required : true},validator : valid},renderer : Grid.Format.enumRenderer(enumObj)},
+            {title : 'check',dataIndex :'e', checkable : true}
+
+          ],
+          data = [{a:'10.11.1.10',b:'ambari-server',c:'1',d:'1',e:false},{a:'10.11.1.11',b:'node1',c:'1',d:'2',e:false}];
+        function valid(value){
+          if(value === '3'){
+            return '不能选择3';
+          }
+        }
+        var editing = new Grid.Plugins.CellEditing({
+          triggerSelected : false //触发编辑的时候不选中行
+        }),
+          store = new Store({
+            data : data,
+            autoLoad:true
+          }),
+          grid = new Grid.Grid({
+            render:'#grid',
+            columns : columns,
+            width : 700,
+            forceFit : true,
+            tbar:{ //添加、删除
+                items : [{
+                  btnCls : 'button button-small',
+                  text : '<i class="icon-plus"></i>添加',
+                  listeners : {
+                    'click' : addFunction
+                  }
+                },
+                {
+                  btnCls : 'button button-small',
+                  text : '<i class="icon-remove"></i>删除',
+                  listeners : {
+                    'click' : delFunction
+                  }
+                }]
+            },
+            plugins : [editing,Grid.Plugins.CheckSelection,Grid.Plugins.ColumnChecked],
+            store : store
+          });
+
+        grid.render();
+
+
+
+        function validFn (value,obj) {
+          var records = store.getResult(),
+            rst = '';
+          BUI.each(records,function (record) {
+            if(record.a == value && obj != record){
+              rst = '文本不能重复';
+              return false;
+            }
+          });
+          return rst;
+        }
+
+        //添加记录
+        function addFunction(){
+          var newData = {b : 0};
+          store.addAt(newData,0);
+          editing.edit(newData,'a'); //添加记录后，直接编辑
+        }
+        //删除选中的记录
+        function delFunction(){
+          var selections = grid.getSelection();
+          store.remove(selections);
+        }
+      });
+    </script>
+<!-- script end -->
+  </div>
+</body>
+</html>

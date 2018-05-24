@@ -1,0 +1,7 @@
+[Updates-ambari-ambariVersion]
+name=ambari-ambariVersion - Updates
+baseurl=http://masterIP/ambari/AMBARI-ambariVersion/SystemMode/
+gpgcheck=1
+gpgkey=http://masterIP/ambari/AMBARI-ambariVersion/SystemMode/ambariVersionDir/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1

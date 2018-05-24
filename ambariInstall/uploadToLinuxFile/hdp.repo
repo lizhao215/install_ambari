@@ -1,0 +1,17 @@
+
+[HDP-HDPVersion]
+name=HDP Version - HDP-HDPVersion
+baseurl=http://masterIP/hdp/HDP/SystemMode/
+gpgcheck=1
+gpgkey=http://masterIP/hdp/HDP/SystemMode/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1
+
+
+[HDP-UTILS-UTILSVersion]
+name=HDP-UTILS Version - HDP-UTILS-UTILSVersion
+baseurl=http://masterIP/hdp/HDP-UTILS-UTILSVersion/
+gpgcheck=1
+gpgkey=http://masterIP/hdp/HDP-UTILS-UTILSVersion/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1

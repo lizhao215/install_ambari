@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ambari Install progress</title>
+ <style type="text/css">
+        table
+        {
+
+            width:1000px;
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+        table td, table th
+        {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+        table thead th
+        {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+        table tr:nth-child(odd)
+        {
+            background: #fff;
+        }
+        table tr:nth-child(even)
+        {
+            background: #F5FAFA;
+        }
+        #log_text
+        {
+            width: 1000px;
+            height: 500px;
+            background: #F5FAFA;
+            margin: 0 auto;
+        }
+        #taskid
+        {
+            opacity: 0;
+            width: 1000px;
+            height: 500px;
+            background: #F5FAFA;
+            margin: 0 auto;
+        }
+        div
+        {
+            width: 1000px;
+            margin: 0 auto;
+        }
+    </style>
+<script
+type="text/javascript"
+src="http://code.jquery.com/jquery-1.4.1.min.js"></script>
+<script type="text/javascript">
+   window.onload = function(){
+
+       setInterval(getTaskStatus,5000)
+   }
+   function getTaskStatus() {
+        var taskid = document.getElementById("taskid").innerText;
+        $.ajax({
+                type: "GET",
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/ambari_status_query" ,//url
+                data: {"taskid":taskid, },
+                success: function (result) {
+                    console.log(result);
+                    document.getElementById("hdp_status").innerText = result['hdp_status'];
+                    document.getElementById("server_status").innerText = result['server_status'];
+                    document.getElementById("agents_status").innerText = result['agents_status'];
+                },
+                error : function() {
+                    alert("未知异常！");
+                }
+            });
+   }
+   function queryHdpLog(){
+       var taskid = document.getElementById("taskid").value;
+   }
+   function queryServerLog(){
+       var taskid = document.getElementById("taskid").value;
+       alert("quw");
+   }
+   function queryAgentsLog(){
+       var taskid = document.getElementById("taskid").value;
+   }
+   function queryAgentLog(ip){
+       alert(ip);
+       var taskid = document.getElementById("taskid").value;
+   }
+ </script>
+
+</head>
+<body>
+    <div>
+		<br>
+		<br>
+		<span id="taskid">{{taskid}}</span>
+		<br>
+		<br>
+	</div>
+	<table>
+		<thead><th>Ambari Task</th><th>Install Status</th><th>log</th></thead>
+		<tr><td>HDP repo Install</td><td id="hdp_status">deploying</td><td><a href="javascript:;" onclick="queryHdpLog()" >log</a></td></tr>
+		<tr><td>Ambari Server Install</td><td id="server_status">deploying</td><td><a href="javascript:;" onclick="queryServerLog()" >log</a></td></tr>
+		<tr><td>Ambari Agents Install</td><td id="agents_status">deploying</td><td><a href="javascript:;" onclick="queryAgentsLog()" >log</a></td></tr>
+		 <!--  自动获取所有的 agent 并展示状态信息   -->
+        {% for ip,host in nodes.items %}
+		<tr><td>agent {{ip}}</td><td id={{host}} >deploying</td><td><a href="javascript:;" onclick="queryAgentLog('{{ip}}')" >log</a></td></tr>
+         {% endfor %}
+	</table>
+	<div>
+		<br>
+		<br>
+	</div>
+	<pre id="log_text" class="logs" >
+     tail     *.log
+
+
+
+
+
+	</pre>
+
+
+</body>
+</html>
