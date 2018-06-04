@@ -1,0 +1,42 @@
+<form class="contact_form" id="ambariInstallForm" action="#" method="post" name="contact_form" >
+	<ul>
+		<li>
+			<h2>Zabbix集群安装</h2>
+			<span class="required_notification">全部必填</span>
+		</li>
+		<li>
+			<label for="control">controlIP:</label>
+            <span class="required_notification">通过该机器ssh 免密码登录 其他机器</span>
+			<input type="text" id="controlip"  placeholder="control IP" required />
+		</li>
+		<li>
+			<label for="control">controlPwd:</label>
+            <span class="required_notification"> 登录control的 root 密码</span>
+			<input type="text" id="controlpwd"  placeholder="control password" required />
+		</li>
+		<li>
+			<label for="server">Zabbix_ServerIP:</label>
+            <span class="required_notification">zabbix server 机器 </span>
+			<input type="text" name="serverip" id="serverip" placeholder="zabbix-server IP" required />
+			<span class="required_notification">如果已安装 mariadb,请输入mysql root 密码</span>
+			<label for="server"  >Mysql_password:</label>
+			<input  type="text" name="mysql_pwd" id="mysql_root_pwd" placeholder="mysql_root_pwd" required />
+			<span class="form_hint">正确格式为：11.11.11.11</span>
+		</li>
+      <!--
+		<li>
+			<label for="website">网站:</label>
+			<input type="url" name="website" placeholder="http://www.17sucai.com" required pattern="(http|https)://.+"/>
+			<span class="form_hint">正确格式为：http://www.17sucai.com</span>
+		</li>  -->
+		<li>
+			<label for="agent">Zabbix agents:</label>
+           <span class="required_notification">每行表示一台机器</span>
+			<textarea name="message" id="agents" cols="40" rows="6" placeholder="10.11.1.10 node1
+10.11.1.11 node2" required ></textarea>
+		</li>
+		<li>
+			<button class="submit" type="button"  onclick="submitForm();" >安装Zabbix 集群</button>
+		</li>
+	</ul>
+</form>

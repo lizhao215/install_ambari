@@ -74,8 +74,10 @@ def exec_shell_command2(cmd, ip, user="root", password="root"):
     command = 'echo y | ' + plink_tool + ' -l  ' + user + ' -pw ' + ' "' + password + '" ' + ip + ' "' + cmd + '"'
     print command
     result = os.popen(command)
-    print 'result:', result.read()
-    return result.read()
+    console_text = result.read()
+    print 'result:', console_text
+    result.close()
+    return console_text
 
 
 def readlines_file(file_path):
@@ -102,4 +104,10 @@ def create_log(log_file):
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger
+
+
+if __name__ == "__main__":
+    print 123
+    # a = exec_shell_command2("yum list installed  | grep httpd", '172.16.16.40', user="root", password="Letmein123")
+
 

@@ -1,0 +1,17 @@
+
+[HDP-HDPVersion]
+name=HDP Version - HDP-HDPVersion
+baseurl=http://masterIP:port/hdp/HDP/centos7/
+gpgcheck=1
+gpgkey=http://masterIP:port/hdp/HDP/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1
+
+
+[HDP-UTILS-UTILSVersion]
+name=HDP-UTILS Version - HDP-UTILS-UTILSVersion
+baseurl=http://masterIP:port/hdp/HDP-UTILS/
+gpgcheck=1
+gpgkey=http://masterIP:port/hdp/HDP-UTILS/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+enabled=1
+priority=1

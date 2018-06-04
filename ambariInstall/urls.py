@@ -15,24 +15,29 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import view
 
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^mystart/', view.mystart),
-    url(r'^input/', view.input),
+    url(r'^index/', view.index),
+    url(r'^input_ambari/', view.input_ambari),
     url(r'^ambari_install_submit/', view.ambari_install_submit),
     url(r'^ambari_status_query/', view.ambari_status_query),
     url(r'^ambari_install_progress/', view.ambari_install_progress),
-    url(r'^install_hdp/', view.ambari_install_progress),
-    url(r'^install_agent/', view.ambari_install_progress),
-    url(r'^install_server/', view.ambari_install_progress),
+    # url(r'^install_hdp/', view.ambari_install_progress),
+    # url(r'^install_agent/', view.ambari_install_progress),
+    # url(r'^install_server/', view.ambari_install_progress),
     url(r'^query_hdp_log/', view.query_hdp_log),
     url(r'^query_server_log/', view.query_server_log),
     url(r'^query_agents_log/', view.query_agents_log),
     url(r'^query_agent_log/', view.query_agent_log),
-    url(r'^$', view.hello),
+    url(r'^hdp_yum_repo/', view.hdp_yum_repo),
+    url(r'^config_without_password_login/', view.config_without_password_login),
+    url(r'^zabbix/', view.zabbix),
+    url(r'^zabbix_proxy/', view.zabbix_proxy),
+    url(r'^$', view.index),
 
 ]
+urlpatterns += staticfiles_urlpatterns()

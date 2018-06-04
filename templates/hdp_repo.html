@@ -1,0 +1,34 @@
+<form class="contact_form" id="ambariInstallForm" action="#" method="post" name="contact_form" >
+	<ul>
+		<li>
+			<h2>HDP</h2>
+			<span class="required_notification">全部必填</span>
+		</li>
+		<li>
+			<label for="hosts">Ambari :</label>
+            <span class="required_notification">上传 hdp 包，做本地yum源</span>
+		    <input type="file" id="ambari"    placeholder="ambari*tar.gz"    required /><br/>
+			<div id="ambari_bar" class="progress_bar"><div class="progress-label">加载...</div></div>
+			<label for="hosts">HDP:</label>
+			<input type="file" id="hdp"       placeholder="HDP*tar.gz"       required /><br/>
+			<div id="hdp_bar" class="progress_bar"><div class="progress-label">加载...</div></div>
+			<label for="hosts">HDP-UTILS:</label>
+			<input type="file" id="hdp_util"  placeholder="HDP-UTILS*tar.gz" required />
+				<div id="hdp_util_bar" class="progress_bar"><div class="progress-label">加载...</div></div>
+		</li>
+		<li>
+			<label for="control">local_yum_repo_IP:</label>
+            <span class="required_notification">yum源 机器ip</span>
+			<input type="text" id="controlip"  placeholder="control IP" required /><br/>
+			<label for="control">local_yum_repo_pwd:</label>
+            <span class="required_notification"> yum 源 机器root密码</span>
+			<input type="text" id="controlpwd"  placeholder="control password" required /><br/>
+			<label for="control">http port:</label>
+            <span class="required_notification"> yum源端口，默认80</span>
+			<input type="text" id="port"  placeholder="80" />
+		</li>
+		<li>
+			<button class="submit" type="button"  onclick="submitForm();" >安装ambari 集群</button>
+		</li>
+	</ul>
+</form>

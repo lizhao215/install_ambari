@@ -1,17 +1,16 @@
-
-[HDP-HDPVersion]
-name=HDP Version - HDP-HDPVersion
-baseurl=http://masterIP/hdp/HDP/SystemMode/
+[HDP-2.5.1]
+name=HDP Version - 2.5.1
+baseurl=http://172.16.16.12:8011/hdp/HDP/centos7/
 gpgcheck=1
-gpgkey=http://masterIP/hdp/HDP/SystemMode/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+gpgkey=http://172.16.16.12:8011/hdp/HDP/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 enabled=1
 priority=1
 
 
-[HDP-UTILS-UTILSVersion]
-name=HDP-UTILS Version - HDP-UTILS-UTILSVersion
-baseurl=http://masterIP/hdp/HDP-UTILS-UTILSVersion/
+[HDP-UTILS-1.1.0]
+name=HDP-UTILS Version - HDP-UTILS-1.1.0
+baseurl=http://172.16.16.12:8011/hdp/HDP-UTILS/
 gpgcheck=1
-gpgkey=http://masterIP/hdp/HDP-UTILS-UTILSVersion/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+gpgkey=http://172.16.16.12:8011/hdp/HDP-UTILS/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 enabled=1
 priority=1

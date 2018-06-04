@@ -1,7 +1,7 @@
-[Updates-ambari-ambariVersion]
-name=ambari-ambariVersion - Updates
-baseurl=http://masterIP/ambari/AMBARI-ambariVersion/SystemMode/
+[Updates-ambari-2.4.1.0]
+name=ambari-2.4.1.0 - Updates
+baseurl=http://172.16.16.12:8011/ambari/AMBARI-2.4.1.0/centos7/2.4.1.0-22/
 gpgcheck=1
-gpgkey=http://masterIP/ambari/AMBARI-ambariVersion/SystemMode/ambariVersionDir/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+gpgkey=http://172.16.16.12:8011/ambari/AMBARI-2.4.1.0/centos7/2.4.1.0-22/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
 enabled=1
 priority=1

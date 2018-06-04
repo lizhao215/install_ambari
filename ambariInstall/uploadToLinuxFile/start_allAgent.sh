@@ -15,11 +15,11 @@ ip=`echo $line | awk '{print $1}'`
 host=`echo $line | awk '{print $2}'`
 echo "ip: " $ip "host:" $host
 
-scp  -o stricthostkeychecking=no  /home/centos/hosts.txt centos@$ip:/home/centos/
-scp  -o stricthostkeychecking=no  /home/centos/hdp.repo centos@$ip:/home/centos/
-scp  -o stricthostkeychecking=no  /home/centos/ambari.repo centos@$ip:/home/centos/
+scp  -o stricthostkeychecking=no  -pr   /home/centos/hosts.txt  root@$ip:/home/centos/
+scp  -o stricthostkeychecking=no   -pr  /home/centos/hdp.repo   root@$ip:/home/centos/
+scp  -o stricthostkeychecking=no   -pr  /home/centos/ambari.repo root@$ip:/home/centos/
 
-ssh -o stricthostkeychecking=no centos@$ip "sudo su ; cd /home; ./setHost_startAgent.sh $ambariServerIP >> /home/centos/ambari_agent_install.log"
+ssh -o stricthostkeychecking=no root@$ip "cd /home; ./setHost_startAgent.sh $ambariServerIP >> /home/centos/ambari_agent_install.log"
 
 done < /home/centos/hosts.txt
 

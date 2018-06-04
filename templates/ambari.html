@@ -1,0 +1,34 @@
+<form class="contact_form" id="ambariInstallForm" action="#" method="post" name="contact_form" >
+	<ul>
+		<li>
+			<h2>ambari集群安装</h2>
+			<span class="required_notification">全部必填</span>
+		</li>
+		<li>
+			<label for="control">controlIP:</label>
+            <span class="required_notification">通过该机器ssh 免密码登录 其他机器</span>
+			<input type="text" id="controlip"  placeholder="control IP" required /><br>
+			<label for="control">control password:</label>
+            <span class="required_notification"> 登录control的 root 密码</span>
+			<input type="text" id="controlpwd"  placeholder="control password" required />
+		</li>
+		<li>
+			<label for="server">Server:</label>
+            <span class="required_notification">ambari server，提供安装大数据向导页面</span>
+			<input type="text" name="serverip" id="serverip" placeholder="serverip hostname" required />
+			<span class="form_hint">格式参考：192.168.10.1 server</span><br>
+			<label for="control">install user:</label>
+            <span class="required_notification"> 安装ambari用户</span>
+			<input type="text" id="user"  placeholder="root" required />
+		</li>
+		<li>
+			<label for="hosts">集群hosts:</label>
+           <span class="required_notification">每行表示一台机器</span>
+			<textarea name="message" id="hosts" cols="40" rows="6" placeholder="10.11.1.10 node1
+10.11.1.11 node2" required ></textarea>
+		</li>
+		<li>
+			<button class="submit" type="button"  onclick="submitForm();" >安装ambari 集群</button>
+		</li>
+	</ul>
+</form>

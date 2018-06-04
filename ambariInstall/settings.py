@@ -25,8 +25,8 @@ SECRET_KEY = '++j$az%jwh(^q+4tg9)g8f@6qk6y+^-4lcnxejg_o#8(7mr!)-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = "*" '192.168.11.75', '127.0.0.1'
 
 # Application definition
 
@@ -122,7 +122,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "common_static")
+    os.path.join(BASE_DIR, "common_static"),
+    ('css', os.path.join(BASE_DIR, 'common_static/css').replace('\\', '/')),
+    ('js', os.path.join(BASE_DIR, 'common_static/js').replace('\\', '/')),
+    ('img', os.path.join(BASE_DIR, 'common_static/img').replace('\\', '/')),
 )
 
 STATICFILES_FINDERS = (
