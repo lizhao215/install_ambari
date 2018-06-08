@@ -23,8 +23,22 @@ def index(request):
     return render(request, 'index.html', context)
 
 
+def slurm(request):
+    context = {}
+    menu = request.GET.get("detail")
+    param = request.GET.get("param")
+    if menu:
+        context['detail'] = menu
+    else:
+        context['detail'] = 'jobs.html'
+    if param:
+        context['param'] = param
+
+    return render(request, 'slurm.html', context)
+
+
 def hello(request):
-     return HttpResponse("Welcome to use my website to deploy ambari cluster ! ")
+    return HttpResponse("Welcome to use my website to deploy ambari cluster ! ")
 
 
 def input2(request):
@@ -83,7 +97,7 @@ def ambari_install_submit(request):
     taskid = str(uuid.uuid1())
     context['taskid'] = taskid
     resp = {'status': "SUCCESS", 'taskid': taskid}
-    thread.start_new_thread(deploy_ambari, (taskid, controlip, controlpwd, serverip, hosts))
+    # thread.start_new_thread(deploy_ambari, (taskid, controlip, controlpwd, serverip, hosts))
     return HttpResponse(json.dumps(resp), content_type="application/json")
 
 

@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^config_without_password_login/', view.config_without_password_login),
     url(r'^zabbix/', view.zabbix),
     url(r'^zabbix_proxy/', view.zabbix_proxy),
+    url(r'^slurm/', view.slurm),
     url(r'^$', view.index),
 
 ]

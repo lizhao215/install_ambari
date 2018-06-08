@@ -70,8 +70,7 @@ function submitForm() {
 			data: {"serverip":serverip,"controlip":controlip,"controlpwd":controlpwd,"hosts":hosts},
 			success: function (result) {
 				console.log(result);
-				//window.location.href="/ambari_install_progress?taskid=" + result['taskid'];
-				$("#right").load("/ambari_install_progress?taskid=" + result['taskid'])
+				window.location.href="/ambari_install_progress?taskid=" + result['taskid'];
                 refreshAmbariStatus();
 			},
 			error : function() {
